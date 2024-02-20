@@ -1,0 +1,35 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submeter(); chamarUsuarios()">
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" name="name" id="nome" class="form-control" formControlName="nome">
+      </div>
+    
+      <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" id="email" class="form-control" formControlName="email">
+      </div>
+
+      <button type="submit" value="Salvar" class="btn btn-primary mb-3">Submit</button>
+  </form>
+
+  <div class="mb-3">
+    <input type="text" [(ngModel)]="nome" placeholder="nome" class="form-control mb-3">
+    <button (click)="chamarUsuarios()" class="btn btn-primary">Listar emails</button>
+  </div>
+  
+  <ul class="list-group mb-3">
+    <li *ngFor="let user of users$ | async" class="list-group-item">
+      {{ user.email }}
+    </li>
+  </ul>
+
+  <div class="mb-3">
+    <input type="text" [(ngModel)]="usuarioDeletar" placeholder="nome" class="form-control mb-3">
+    <button (click)="deletarUsuario()" class="btn btn-primary">Deletar emails do usuário</button>
+  </div>
+  
+  <br>
+
+  <button (click)="resetarTabela()" class="btn btn-primary">Resetar todos os emails</button>
+</div>
