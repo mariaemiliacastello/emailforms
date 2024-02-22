@@ -22,7 +22,6 @@ export class FormsComponent implements OnInit{
   
   ngOnInit() {
     this.criarForm(new Usuario());
-    // this.chamarUsuarios();
   }
 
   criarForm(usuario: Usuario) {
@@ -33,17 +32,10 @@ export class FormsComponent implements OnInit{
   }
   
   async adicionarUsuario() {
-    const usuarios = await this.listarEmails();
-    
-    if (usuarios.length === 0) {
-        await db.usuario.add({
-            nome: this.form.value.nome,
-            email: this.form.value.email
-        });
-        console.log('Usuário adicionado com sucesso!');
-    } else {
-        console.log('Usuário já existe na tabela!');
-    }
+    await db.usuario.add({
+      nome: this.form.value.nome,
+      email: this.form.value.email
+    });
   }
 
   async listarEmails(){ 
